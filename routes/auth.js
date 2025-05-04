@@ -54,7 +54,7 @@ authRouter.post("/login", async(req, res) => {
             // create a token
             const token = jwt.sign({id:isUserPresent._id.toString()}, "Tinder_GO_SECRET_KEY")
             // set token in cookies
-            res.cookie("token", token, {httpOnly: true})
+            res.cookie("token", token, {httpOnly: true, secure: true, sameSite: "None"})
             res.status(200).send(isUserPresent);
         } else {
             throw new Error('Invalid credential.')
