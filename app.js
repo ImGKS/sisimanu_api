@@ -8,7 +8,9 @@ const serverless = require('serverless-http');
 const app = express();
 app.use(cors({
     origin: "https://sisimanu-web.vercel.app",
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }))
 app.options('*', cors());
 // convert JSON into js object so that node can read
