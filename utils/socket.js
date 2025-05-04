@@ -12,7 +12,10 @@ const getHashedRoomId = (loggedInUserId, toUserId) => {
 const initializeSocket = (server) => {
     const io = socket(server, {
         cors: {
-            origin: "http://localhost:5173"
+            origin: [
+                "https://sisimanu-web.vercel.app",
+                "http://localhost:5173"
+            ],
         }
     })
 

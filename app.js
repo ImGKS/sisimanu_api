@@ -7,7 +7,10 @@ const serverless = require('serverless-http');
 
 const app = express();
 app.use(cors({
-    origin: "https://sisimanu-web.vercel.app",
+    origin: [
+        "https://sisimanu-web.vercel.app",
+        "http://localhost:5173"
+    ],
     credentials: true
 }))
 
