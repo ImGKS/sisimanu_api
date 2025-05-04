@@ -6,7 +6,7 @@ const http = require('http');
 
 const app = express();
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://sisimanu-web.vercel.app/",
     credentials: true
 }))
 // convert JSON into js object so that node can read
