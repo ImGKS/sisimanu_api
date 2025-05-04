@@ -3,6 +3,7 @@ const connectDB = require("./config/database");
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const http = require('http');
+const serverless = require('serverless-http');
 
 const app = express();
 app.use(cors({
@@ -42,3 +43,4 @@ connectDB()
         console.log("ERROR : ", error)
     })
 
+module.exports = serverless(server);
