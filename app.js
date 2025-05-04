@@ -60,4 +60,4 @@ connectDB()
         console.log("ERROR : ", error)
     })
 
-module.exports = serverless(server);
+module.exports = serverless(app);
