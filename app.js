@@ -9,6 +9,7 @@ app.use(cors({
     origin: "https://sisimanu-web.vercel.app",
     credentials: true
 }))
+app.options('*', cors());
 // convert JSON into js object so that node can read
 app.use(express.json())
 app.use(cookieParser())
