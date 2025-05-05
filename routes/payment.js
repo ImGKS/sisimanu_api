@@ -28,8 +28,8 @@ paymentRouter.post("/create-subscription", userAuth, async(req, res) => {
                     quantity: 1,
                 }
             ],
-            success_url: 'http://localhost:5173/premium?status=success&session_id={CHECKOUT_SESSION_ID}',
-            cancel_url: 'http://localhost:5173/premium?status=failed&session_id={CHECKOUT_SESSION_ID}',
+            success_url: 'https://sisimanu-web.vercel.app/premium?status=success&session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: 'https://sisimanu-web.vercel.app/premium?status=failed&session_id={CHECKOUT_SESSION_ID}',
         })
 
         return res.status(200).json({session})
