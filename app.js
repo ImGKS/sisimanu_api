@@ -27,6 +27,8 @@ const initializeSocket = require('./utils/socket');
 const { chatRouter } = require('./routes/chat');
 const { paymentRouter } = require('./routes/payment');
 
+app.get('/ping', (_, res) => res.send('pong'));
+
 app.use("/", authRouter)
 app.use("/", profileRouter)
 app.use("/", requestRouter)

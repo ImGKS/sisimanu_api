@@ -16,7 +16,9 @@ const initializeSocket = (server) => {
                 "https://sisimanu-web.vercel.app",
                 "http://localhost:5173"
             ],
-        }
+        },
+        path: "/socket.io", // this must match the client
+        transports: ["websocket"],
     })
 
     const onlineUsers = new Map();
