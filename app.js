@@ -42,7 +42,7 @@ initializeSocket(server)
 connectDB()
     .then(()=>{
         console.log("DB connected successfully.")
-        server.listen(3000, ()=>{
+        server.listen(3000, "0.0.0.0", ()=>{
             console.log("Server is running at 3000")
         })
     }).catch((error)=>{
