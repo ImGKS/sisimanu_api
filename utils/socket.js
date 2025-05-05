@@ -16,6 +16,7 @@ const initializeSocket = (server) => {
                 "https://sisimanu-web.vercel.app",
                 "http://localhost:5173"
             ],
+            methods: ["GET", "POST"]
         },
         path: "/socket.io", // this must match the client
         transports: ["websocket"],
