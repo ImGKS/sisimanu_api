@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const http = require('http');
 const serverless = require('serverless-http');
+require('./routes/redis')
 
 const app = express();
 app.use(cors({

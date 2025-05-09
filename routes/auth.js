@@ -3,7 +3,8 @@ const authRouter = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {validateSignupData} = require('../utils/validation')
+const {validateSignupData} = require('../utils/validation');
+const { redis_client } = require('./redis');
 
 authRouter.post("/signup", async(req, res) => {
     try {
@@ -67,6 +68,7 @@ authRouter.post("/login", async(req, res) => {
 authRouter.post("/logout", (req, res) => {
     try {
         res.cookie("token", null, {expires: new Date(0)})
+        redis_client.flushAll()
         return res.send("logout successfully.")
     } catch (error) {
         res.send("ERROR: " + error.message)
