@@ -38,7 +38,7 @@ const initializeSocket = (server) => {
             }
             onlineUsers.get(loggedInUserId).add(socket.id);
 
-             // ✅ Notify the current user that the toUserId is online (if they are)
+             // Notify the current user that the toUserId is online (if they are)
             const toUserSockets = onlineUsers.get(toUserId);
             if (toUserSockets && toUserSockets.size > 0) {
                 socket.emit("user-online", toUserId); // this notifies the user who just joined

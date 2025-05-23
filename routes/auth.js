@@ -14,7 +14,7 @@ authRouter.post("/signup", async(req, res) => {
         const isDataValid = validateSignupData(req);
 
         if(!isDataValid) {
-
+            return res.status(401).json({message: "Invalid Data."})
         }
 
         // encrypt the password

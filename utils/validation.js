@@ -13,6 +13,8 @@ const validateSignupData = (req) => {
     } else if(skills?.length > 5) {
         throw new Error('Skills can have maximum 5.')
     }
+
+    return true
 }
 
 
