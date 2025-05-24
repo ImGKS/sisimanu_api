@@ -23,7 +23,7 @@ userRouter.get("/user/received/request", userAuth, async(req, res) => {
 
 userRouter.get("/user/connections", userAuth, async(req, res) => {
     try {
-        const cacheValue = await redis_client.get(JSON.stringify(req.user._id), (err, val) => {return val})
+        const cacheValue = await redis_client.get(JSON.stringify(req?.user?._id), (err, val) => {return val})
         if (cacheValue) {
             return res.json({message:'Fetch request successfully', data:JSON.parse(cacheValue)})
         }
@@ -47,14 +47,14 @@ userRouter.get("/user/connections", userAuth, async(req, res) => {
         .populate('toUserId', USER_SAFE_DATA)
 
         const data = pendingConnectionRequest.map((request) => {
-            if(request.fromUserId._id.toString() ===  loggedInUser._id.toString()) {
+            if(request.fromUserId?._id.toString() ===  loggedInUser._id.toString()) {
                 return request.toUserId
             }
             return request.fromUserId
         })
 
         // set to redis
-        redis_client.set(JSON.stringify(req.user._id), JSON.stringify(data), { EX: 3000 })
+        redis_client.set(JSON.stringify(req?.user?._id), JSON.stringify(data), { EX: 3000 })
         
         res.json({message:'Fetch request successfully', data:data})
     } catch (error) {

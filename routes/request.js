@@ -4,6 +4,7 @@ const userAuth = require('../middleware/auth');
 const User = require('../models/user');
 const connectionRequest = require('../models/connectionRequest')
 const {ALLOWED_REQUEST_STATUS, ALLOWED_ACTION_REQUEST_STATUS} = require("../utils/constants")
+const { redis_client } = require('./redis');
 
 requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req, res) => {
     try {
@@ -70,6 +71,8 @@ requestRouter.post("/request/review/:status/:requestId", userAuth, async (req, r
 
         connectionRequestCame.status = status //incoming
         const data = await connectionRequestCame.save()
+
+        await redis_client.del(JSON.stringify(req?.user?._id));
 
         res.json({
             message: "request accepted.",

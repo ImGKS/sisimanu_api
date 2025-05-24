@@ -56,7 +56,7 @@ profileRouter.get("/profile/user/get/:emailId", userAuth, async(req, res) => {
     const emailId  = req.params.emailId;
  
     try {
-        const userData = await User.find({emailId: emailId}).select(['firstName', 'lastName', 'age', 'profilePic'])
+        const userData = await User.find({emailId: emailId}).select(['firstName', 'lastName', 'age', 'profilePic', 'gender'])
 
         if (!userData) {
             res.json({message:"No user found."})
