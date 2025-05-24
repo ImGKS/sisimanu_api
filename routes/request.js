@@ -17,6 +17,12 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req, res)
             return res.json({message: 'Invalid status type.'})
         }
 
+         // Check if userId exist
+        const toUser = await User.findById(toUserId)
+        if(!toUser) {
+           return res.json({message: 'User does not exists.'})
+        }
+
         // Already existing connection request
         const isRequestSent = await connectionRequest.findOne({
             $or: [
@@ -26,13 +32,7 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req, res)
         })
 
         if(isRequestSent) {
-           return res.json({message: 'Connection request already sent.'})
-        }
-
-        // Check if userId exist
-        const toUser = await User.findById(toUserId)
-        if(!toUser) {
-           return res.json({message: 'User does not exists.'})
+           return res.status(401).json({message: 'Connection request already sent.'})
         }
 
         const connectionRequestInstance = new connectionRequest({

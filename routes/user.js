@@ -76,16 +76,16 @@ userRouter.get("/feed", userAuth, async(req, res) => {
                 { toUserId: loggedInUser._id.toString() }
             ]
         }).select(['fromUserId', 'toUserId'])
-        .skip(skip)
-        .limit(limit)
-
+        .sort({ _id: -1 })
+        // .skip(skip)
+        // .limit(limit)
+        
         const hideUserFromFeed = new Set();
-
+        
         allConnectionRequest.forEach((req) => {
-            hideUserFromFeed.add(req.fromUserId)
-            hideUserFromFeed.add(req.toUserId)
+            hideUserFromFeed.add(req.fromUserId.toString())
+            hideUserFromFeed.add(req.toUserId.toString())
         })
-
         const feedUsers = await User.find({
             $and: [
                 {_id: {$nin: Array.from(hideUserFromFeed)}},
