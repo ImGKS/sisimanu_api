@@ -10,7 +10,10 @@ const app = express();
 app.use(cors({
     origin: [
         "https://sisimanu-web.vercel.app",
-        "http://localhost:5173"
+        "http://localhost:5173",
+        "52.66.251.209",
+        "imgks.in",
+        "http://imgks.in"
     ],
     credentials: true
 }))
