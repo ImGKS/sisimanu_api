@@ -2,10 +2,10 @@ const client = require('redis')
 
 const redis_client = client.createClient({
     username: 'default',
-    password: '9VanuecFoIaNzobR0CaZdaBK5Sn8iajv',
+    password: 'RJdJAQuUOWSCCvWVMdrC0UwxnBENkkqu',
     socket: {
-        host: 'redis-16676.c212.ap-south-1-1.ec2.redns.redis-cloud.com',
-        port: 16676
+        host: 'redis-19512.c57.us-east-1-4.ec2.cloud.redislabs.com',
+        port: 19512
     }
 });
 
